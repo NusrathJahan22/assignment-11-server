@@ -44,6 +44,19 @@ async function run() {
       res.send(result)
     })
 
+    // app.detete("/addjobs/:id" ,async (req,res)=>{
+    //   const id =req.parems.id;
+    //   console.log("delete" ,id);
+    //   const query ={
+    //     _id: new ObjectId(id)
+    //   };
+    //   const result = await addjobs.deleteOne(query);
+    //   console.log(result);
+    //   res.send(result)
+    // });
+
+  
+
     app.post("/formdetails" , async(req,res) =>{
       const users =req.body
       const result =await formdetails.insertOne(users)
