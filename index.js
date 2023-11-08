@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion,ObjectId} = require('mongodb');
 const port = process.env.PORT || 5000;
 
 
@@ -31,6 +31,7 @@ async function run() {
 
 
     const addjobs = client.db('addjobsDB').collection('addjobs')
+    const formdetails = client.db('formdetailsDB').collection('formdetails')
 
     app.post("/addjobs", async (req, res) => {
       const user = req.body
@@ -40,6 +41,25 @@ async function run() {
 
     app.get("/addjobs", async (req, res) => {
       const result = await addjobs.find().toArray();
+      res.send(result)
+    })
+
+    app.post("/formdetails" , async(req,res) =>{
+      const users =req.body
+      const result =await formdetails.insertOne(users)
+      res.send(result)
+    })
+
+    app.get('/formdetails' ,async(req,res) =>{
+      const result =await formdetails.find().toArray()
+      res.send(result)
+    })
+
+
+    app.get('/addjobs/:id', async (req, res) => {
+      const id = req.params.id
+      const query = {_id: new ObjectId(id)}
+      const result = await addjobs.findOne(query)
       res.send(result)
     })
 
