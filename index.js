@@ -55,7 +55,26 @@ async function run() {
       res.send(result)
     });
 
-  
+    app.put('/addjobs/:id', async (req, res) => {
+      const id = req.params.id
+      const filter = { _id: new ObjectId(id) }
+      // const options = { upsert: true }
+      const update = req.body
+      const Cart = {
+        $set: {
+          jobtitle: update.jobtitle,
+          minimumprice:update.minimumprice,
+          maximamprice:update.maximamprice,
+          price:update.price,
+          email:update.email,
+          Category:update.Category,
+          deadline:update.deadline,
+          description:update.description
+        }
+      }
+      const result = await addjobs.updateOne(filter, Cart);
+      res.send(result);
+    })
 
     app.post("/formdetails" , async(req,res) =>{
       const users =req.body
@@ -85,15 +104,6 @@ async function run() {
   }
 }
 run().catch(console.dir);
-
-
-
-
-
-
-
-
-
 
 
 
