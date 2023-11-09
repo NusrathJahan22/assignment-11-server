@@ -81,6 +81,11 @@ async function run() {
       const result =await formdetails.insertOne(users)
       res.send(result)
     })
+    app.post("/formdetails" , async(req,res) =>{
+      const users =req.body
+      const result =await formdetails.insertOne(users)
+      res.send(result)
+    })
 
     app.get('/formdetails' ,async(req,res) =>{
       const result =await formdetails.find().toArray()
