@@ -11,9 +11,9 @@ app.use(express.json());
 
 // console.log(process.env.DB_USER)
 
-// const uri = `mongodb+srv://${process.env.DB_PASS}:${process.env.DB_USER}@cluster0.dinkriz.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_PASS}:${process.env.DB_USER}@cluster0.dinkriz.mongodb.net/?retryWrites=true&w=majority`;
 
-const uri = `mongodb+srv://addjobsDB:Y1pOfTSnCQ4qPJy7@cluster0.dinkriz.mongodb.net/?retryWrites=true&w=majority`;
+// const uri = `mongodb+srv://addjobsDB:Y1pOfTSnCQ4qPJy7@cluster0.dinkriz.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -31,7 +31,6 @@ async function run() {
 
 
     const addjobs = client.db('addjobsDB').collection('addjobs')
-    const formdetails = client.db('formdetailsDB').collection('formdetails')
     const formdetails = client.db('formdetailsDB').collection('formdetails')
 
     app.post("/addjobs", async (req, res) => {
