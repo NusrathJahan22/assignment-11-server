@@ -32,6 +32,7 @@ async function run() {
 
     const addjobs = client.db('addjobsDB').collection('addjobs')
     const formdetails = client.db('formdetailsDB').collection('formdetails')
+    const formdetails = client.db('formdetailsDB').collection('formdetails')
 
     app.post("/addjobs", async (req, res) => {
       const user = req.body
